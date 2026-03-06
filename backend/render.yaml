@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: hrms-lite-backend
+    env: node
+    rootDir: backend
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run prisma:migrate:deploy && npm start
+    autoDeploy: true
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
+      - key: PORT
+        sync: false
